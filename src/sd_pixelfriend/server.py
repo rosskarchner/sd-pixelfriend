@@ -235,7 +235,7 @@ class PixelFriendServer:
             "cfg_scale": 7.0,
         }
         
-        response = requests.post(url, json=payload, timeout=300)
+        response = requests.post(url, json=payload, timeout=120)
         response.raise_for_status()
         return response.json()
 
