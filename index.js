@@ -56,7 +56,7 @@ class SDPixelFriendServer {
         {
           name: "generate_pixel_art",
           description:
-            "Generate pixel art using SDNext. Creates retro-style pixel art images at various dimensions. " +
+            "Generate pixel art using SDNext. Creates retro-style pixel art images at various dimensions and bit styles (8bit, 16bit, 32bit). " +
             "The prompt will be automatically enhanced with pixel art keywords for best results.",
           inputSchema: {
             type: "object",
@@ -65,6 +65,13 @@ class SDPixelFriendServer {
                 type: "string",
                 description:
                   "Description of the pixel art to generate (e.g., 'a dragon', 'a castle', 'a forest scene')",
+              },
+              bit_style: {
+                type: "string",
+                enum: ["8bit", "16bit", "32bit"],
+                description:
+                  "Bit depth style: 8bit (NES/Game Boy era), 16bit (SNES/Genesis era), 32bit (PlayStation/Saturn era)",
+                default: "8bit",
               },
               size: {
                 type: "string",
@@ -124,6 +131,7 @@ class SDPixelFriendServer {
   async handleGeneratePixelArt(args) {
     const {
       prompt,
+      bit_style = "8bit",
       size = "medium",
       width: customWidth,
       height: customHeight,
@@ -154,8 +162,8 @@ class SDPixelFriendServer {
       height = preset.height;
     }
 
-    // Enhance prompt for pixel art
-    const enhancedPrompt = `pixel art, ${prompt}, 8bit, retro, pixelated, low resolution`;
+    // Enhance prompt for pixel art with appropriate bit style
+    const enhancedPrompt = `pixel art, ${prompt}, ${bit_style}, retro, pixelated, low resolution`;
 
     // Prepare request for SDNext
     const payload = {
@@ -201,8 +209,9 @@ class SDPixelFriendServer {
         content: [
           {
             type: "text",
-            text: `Successfully generated ${width}x${height} pixel art!\n\n` +
+            text: `Successfully generated ${width}x${height} pixel art (${bit_style} style)!\n\n` +
               `Prompt: ${prompt}\n` +
+              `Bit Style: ${bit_style}\n` +
               `Enhanced prompt: ${enhancedPrompt}\n` +
               `Negative prompt: ${negative_prompt}\n` +
               `Steps: ${steps}\n` +

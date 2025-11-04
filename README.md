@@ -5,6 +5,7 @@ An MCP (Model Context Protocol) server that connects to your local SDNext (Stabl
 ## Features
 
 - 🎨 Generate retro-style pixel art using Stable Diffusion
+- 🎮 Configurable bit styles: 8-bit, 16-bit, or 32-bit aesthetics
 - 📐 Multiple dimension presets (tiny, small, medium, large, wide, tall)
 - 🎯 Custom dimensions support
 - 🔧 Configurable generation parameters (steps, CFG scale, seed)
@@ -89,6 +90,10 @@ Generate pixel art images with various options.
 - **prompt** (required): Description of the pixel art to generate
   - Example: "a dragon", "a castle", "a forest scene"
 
+- **bit_style** (optional): Bit depth style for the pixel art aesthetic
+  - Options: `8bit` (NES/Game Boy era), `16bit` (SNES/Genesis era), `32bit` (PlayStation/Saturn era)
+  - Default: `8bit`
+
 - **size** (optional): Preset dimension size
   - Options: `tiny` (64x64), `small` (128x128), `medium` (256x256), `large` (512x512), `wide` (512x256), `tall` (256x512), `custom`
   - Default: `medium`
@@ -121,21 +126,25 @@ Generate a pixel art of a medieval castle at medium size
 ```
 
 ```
-Create a tiny pixel art sprite of a wizard
+Create a 16bit pixel art sprite of a wizard
 ```
 
 ```
-Make a wide pixel art landscape of a sunset over mountains
+Make a wide 32bit pixel art landscape of a sunset over mountains
 ```
 
 ```
-Generate a pixel art robot with custom dimensions 320x320
+Generate an 8bit pixel art robot with custom dimensions 320x320
+```
+
+```
+Create a large 16bit pixel art character in SNES style
 ```
 
 ## How It Works
 
 1. The MCP server receives a generation request with your prompt
-2. It enhances the prompt with pixel art keywords (e.g., "pixel art", "8bit", "retro", "pixelated")
+2. It enhances the prompt with pixel art keywords (e.g., "pixel art", "8bit/16bit/32bit", "retro", "pixelated")
 3. It adds negative prompts to avoid smooth/realistic rendering
 4. It sends the request to your local SDNext API endpoint
 5. SDNext generates the image using Stable Diffusion
@@ -166,10 +175,11 @@ Generate a pixel art robot with custom dimensions 320x320
 ## Tips for Better Pixel Art
 
 1. **Use clear, simple prompts**: "a cat", "a tree", "a spaceship"
-2. **Specify the style**: The tool automatically adds pixel art keywords, but you can add more like "gameboy style", "16-bit", "nes style"
-3. **Start small**: Tiny and small sizes (64x64, 128x128) often look more authentically pixelated
-4. **Experiment with seeds**: Save seeds of images you like to generate similar variations
-5. **Use appropriate models**: Some SD models work better for pixel art (look for pixel art or sprite-focused models)
+2. **Choose the right bit style**: 8bit for classic retro look, 16bit for more colors and detail, 32bit for smoother gradients while keeping the pixel art aesthetic
+3. **Match size to bit style**: 8bit works great with tiny/small sizes (64x64, 128x128), while 16bit and 32bit shine at medium/large sizes
+4. **Specify additional style keywords**: You can add era-specific terms like "Game Boy style" (8bit), "SNES style" (16bit), or "PS1 style" (32bit)
+5. **Experiment with seeds**: Save seeds of images you like to generate similar variations
+6. **Use appropriate models**: Some SD models work better for pixel art (look for pixel art or sprite-focused models)
 
 ## Contributing
 
