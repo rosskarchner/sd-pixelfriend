@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "sd-pixelfriend": {
+      "command": "sd-pixelfriend",
+      "env": {
+        "SDNEXT_URL": "http://127.0.0.1:7860"
+      }
+    }
+  }
+}

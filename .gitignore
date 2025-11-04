@@ -45,3 +45,4 @@ htmlcov/
 # Temporary files
 *.log
 tmp/
+test_server.py
