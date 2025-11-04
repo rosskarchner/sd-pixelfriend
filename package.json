@@ -1,0 +1,25 @@
+{
+  "name": "sd-pixelfriend",
+  "version": "1.0.0",
+  "description": "MCP server for generating pixel art using SDNext",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "sd-pixelfriend": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "stable-diffusion",
+    "pixel-art",
+    "sdnext"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  }
+}
